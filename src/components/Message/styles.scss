@@ -1,0 +1,26 @@
+.message {
+  padding: 1.5rem;
+  .message__author {
+    
+    padding-left: 1.5rem;
+    font-weight: bold;
+  }
+  .message__text {
+    position: relative;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background-color: #fff;
+    color: #0b0b91;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      display: inline-block;
+      height : 0;
+      width : 0;
+      border-bottom : 15px solid #fff;
+      border-left : 15px solid transparent;
+    }
+  }
+}
