@@ -5,6 +5,7 @@
     "browser": true
   },
   "rules": {
+    "no-restricted-globals": ["error", "fdescribe"],
     "brace-style": ["error", "stroustrup"],
     "no-param-reassign": [
       "error",

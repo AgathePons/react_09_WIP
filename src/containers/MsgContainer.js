@@ -9,6 +9,7 @@ function MsgContainer() {
     <div className="msg-container">
       {messages.map((message) => (
         <Message
+          key={message.id}
           message={message}
         />
       ))}
