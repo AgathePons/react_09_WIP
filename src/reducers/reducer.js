@@ -1,11 +1,31 @@
 // == Import Actions
-import { CHANGE_INPUT_MESSAGE, SEND_INPUT_MESSAGE } from "../actions/actions";
+import { CHANGE_INPUT_MESSAGE, SEND_INPUT_MESSAGE } from '../actions/actions';
 
 // == Initial state
 const initialState = {
   messageInputText: '',
   author: 'SuperChat',
   messages: [
+    {
+      id: 1,
+      author: 'Super Chat',
+      messageText: 'Miaou !',
+    },
+    {
+      id: 2,
+      author: 'Super Chat',
+      messageText: 'Miaouuuuuu ..!',
+    },
+    {
+      id: 3,
+      author: 'Super Chat',
+      messageText: '*patpat*',
+    },
+    {
+      id: 4,
+      author: 'Super Chat',
+      messageText: '🙀',
+    },
     {
       id: 1,
       author: 'Super Chat',
