@@ -1,58 +1,22 @@
 # /!\ WIP /!\
 
-## UseSelector - Pseudo code
+## Redux controlled component
 
-### 1er approche
+Here, I chose to use the vanilla React `useState` and `useEffect` becase the data is local so it do not have to be in the Redux store.
+But regarding the project's governance, it is absolutely possible to handle it with Redux and stock it in the store.
 
-```js
-function useSelector(cbSelection){
-    const state = storeFromProvider.getState(); // il recupere le store donnée au Provider (qui englobe notre application)
+The advantage is that if we have some big form with sub-components, using the Redux store and the global state for controlled components like inputs and so on allow us to access data from anywhere without bothering to transport the data where they have to be used.
 
-    const [oldStateSlice, setOldStateSlice] = useState(null);
+**BUT** it is more complexe, and less fast to load, and the more the app grows up, the more the app will be slow down
 
-    const stateSlice = cbSelection(state);
+## UseSelector - Comparison function
 
-    // il fait une comparaison simple avec l'ancienne valeur
-    if(oldStateSlice !== stateSlice){
-        // si c'est différent il re-render
-        render(); // pseudo code, pour declencher le render de l'application
-    }
-
-    return stateSlice;
-}
-```
-
-### 2eme approche
-
-```js
-function useSelector(cbSelection){
-    const [oldStateSlice, setOldStateSlice] = useState(null);
-
-    storeFromProvider.subscribe(() => {
-        const state = storeFromProvider.getState(); // il recupere le store donnée au Provider (qui englobe notre application)
-
-        const stateSlice = cbSelection(state);
-
-        // il fait une comparaison simple avec l'ancienne valeur
-        if(oldStateSlice !== stateSlice){
-            // si c'est différent il met à jour l'ancienne valeur avec la nouvelle valeur
-            //  du coup, faire un setState, déclenche un re-render
-            setOldStateSlice(stateSlice);
-        }
-    });
-
-    return oldStateSlice;
-}
-```
-
-
-### 2eme approche bis + fonction de comparaison
 ```js
 function useSelector(cbSelection, compareFunction = undefined){
     const [oldStateSlice, setOldStateSlice] = useState(null);
 
     storeFromProvider.subscribe(() => {
-        const state = storeFromProvider.getState(); // il recupere le store donnée au Provider (qui englobe notre application)
+        const state = storeFromProvider.getState(); // get the store given to the Provider
 
         const stateSlice = cbSelection(state);
 
@@ -63,8 +27,9 @@ function useSelector(cbSelection, compareFunction = undefined){
             doReRender = oldStateSlice !== stateSlice
         }
 
-        // il fait une comparaison simple avec l'ancienne valeur
+        // simple comparison between the new value and the old value
         if(){
+            // 
             // si c'est différent il met à jour l'ancienne valeur avec la nouvelle valeur
             //  du coup, faire un setState, déclenche un re-render
             setOldStateSlice(stateSlice);
