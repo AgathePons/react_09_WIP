@@ -31,6 +31,16 @@ const initialState = {
       author: 'Super Chat',
       messageText: 'Miaouuuu miou miaouu ! Miaou ! Miiiiou ? ... Miou miaou miaouuuuuu miaou miou miiiaou',
     },
+    {
+      id: 6,
+      author: 'Super Chat',
+      messageText: '...',
+    },
+    {
+      id: 6,
+      author: 'Super Chat',
+      messageText: 'MIAOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU',
+    },
   ],
 };
 

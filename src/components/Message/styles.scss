@@ -26,6 +26,7 @@
     border-radius: 1rem;
     background-color: #fff;
     color: #0b0b91;
+    overflow-wrap: anywhere;
     animation: grow 0.3s vars.$ease-out-back 0s 1;
     &:before {
       content: '';

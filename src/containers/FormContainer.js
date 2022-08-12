@@ -1,5 +1,5 @@
 // == Import
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { actionSendInputMessage } from '../actions/actions';
 import FormInput from '../components/FormInput';
@@ -9,6 +9,10 @@ function FormContainer() {
   const dispatch = useDispatch();
 
   const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   const author = useSelector((state) => state.author);
 
   const [messageInputText, setMessageInputText] = useState('');
@@ -28,10 +32,6 @@ function FormContainer() {
     setMessageInputText('');
   };
 
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
-
   return (
     <div className="form-container">
       <FormInput
@@ -44,4 +44,4 @@ function FormContainer() {
   );
 }
 
-export default FormContainer;
+export default React.memo(FormContainer);
