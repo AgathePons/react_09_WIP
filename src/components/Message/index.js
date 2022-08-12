@@ -5,10 +5,10 @@ import classNames from 'classnames';
 import './styles.scss';
 
 // == Component
-function Message({ message, className, ...rest }) {
+function Message({ message, className, isOther, ...rest }) {
   return (
     <div
-      className={classNames('message', className)}
+      className={classNames('message', className, { message__isOther: isOther })}
       {...rest}
     >
       <div className="message__author">
@@ -23,6 +23,7 @@ function Message({ message, className, ...rest }) {
 
 Message.propTypes = {
   className: PropTypes.string,
+  isOther: PropTypes.bool.isRequired,
   message: PropTypes.shape({
     author: PropTypes.string.isRequired,
     messageText: PropTypes.string.isRequired,

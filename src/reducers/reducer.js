@@ -2,6 +2,7 @@
 import { CHANGE_INPUT_MESSAGE, SEND_INPUT_MESSAGE } from '../actions/actions';
 // == Initial state
 const initialState = {
+  isOther: false,
   messageInputText: '',
   author: 'SuperChat',
   messages: [

@@ -3,6 +3,14 @@
 .message {
   padding: vars.$gutter;
   text-align: right;
+  &__isOther {
+    text-align: left;
+    .message__text {
+      &:before {
+        left: 3rem;
+      }
+    }
+  }
   .message__author {
     
     padding-left: vars.$gutter;
