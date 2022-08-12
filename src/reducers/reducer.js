@@ -1,5 +1,6 @@
 // == Import Actions
 import { SEND_INPUT_MESSAGE } from '../actions/actions';
+import { getNewId } from '../utils/utils';
 // == Initial state
 const initialState = {
   isOther: false,
@@ -38,7 +39,14 @@ function reducer(state = initialState, action = {}) {
     case SEND_INPUT_MESSAGE:
       return {
         ...state,
-        messages: [...state.messages, action.payload],
+        messages: [
+          ...state.messages,
+          {
+            id: getNewId(state.messages),
+            author: action.payload.author,
+            messageText: action.payload.messageText,
+          },
+        ],
       };
     default:
       return state;

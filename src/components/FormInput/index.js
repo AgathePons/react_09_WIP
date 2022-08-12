@@ -38,7 +38,7 @@ function FormInput({
 
 FormInput.propTypes = {
   className: PropTypes.string,
-  inputRef: PropTypes.func.isRequired,
+  inputRef: PropTypes.shape().isRequired,
   messageInputText: PropTypes.string.isRequired,
   onMessageInputChange: PropTypes.func.isRequired,
   onMessageInputSubmit: PropTypes.func.isRequired,

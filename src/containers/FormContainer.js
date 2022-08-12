@@ -22,7 +22,6 @@ function FormContainer() {
     // if empty message
     if (messageInputText.trim() === '') return;
     dispatch(actionSendInputMessage({
-      id: 6,
       author: author,
       messageText: messageInputText,
     }));
