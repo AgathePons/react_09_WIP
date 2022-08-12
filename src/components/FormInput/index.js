@@ -15,16 +15,16 @@ function FormInput({
 }) {
   return (
     <form
-      className={classNames('form', className)}
+      className={classNames('form-msg', className)}
       onSubmit={onMessageInputSubmit}
       {...rest}
     >
       <label
-        className="form__label"
+        className="form-msg__label"
         htmlFor="inputMessage"
       >
         <input
-          className="form__input"
+          className="form-msg__input"
           placeholder="Saisissez votre message..."
           ref={inputRef}
           type="text"

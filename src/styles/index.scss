@@ -11,6 +11,48 @@ body {
   background-color: #13405D;
 }
 
+.settings-container {
+  z-index: 2;
+  right: -246px;
+  position: fixed;
+  display: flex;
+  padding: calc(vars.$gutter / 2);
+  overflow: hidden;
+  transition: right .4s vars.$ease-out-back;
+  &.settings-container--open {
+    right: 0;
+    .settings-container__button {
+      transform: scale(1) rotate(135deg);
+      transition: transform .3s vars.$ease-out-back;
+      &:hover {
+        transform: scale(1.1) rotate(135deg);
+      }
+    }
+  }
+  .settings-container__button {
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: calc(vars.$gutter / 2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #BDDCF0;
+    transform: scale(1) rotate(0deg);
+    transition: transform .3s vars.$ease-out-back;
+    &> svg {
+      width: 100%;
+      fill: #13405D;
+    }
+    &:hover {
+      background-color: #F5F5F5;
+      transform: scale(1.1) rotate(0deg);
+    }
+  }
+}
+
 .chat-container {
   position: relative;
   width: 75%;

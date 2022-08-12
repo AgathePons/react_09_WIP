@@ -1,11 +1,11 @@
 @use 'src/styles/vars';
 
-.form {
+.form-msg {
   width: 100%;
-  .form__label {
+  .form-msg__label {
     width: 100%;
   }
-  .form__input {
+  .form-msg__input {
     width: 100%;
     padding: vars.$gutter;
     border: none;

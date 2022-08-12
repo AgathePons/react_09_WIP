@@ -2,7 +2,6 @@
 
 ## Redux controlled component
 
-
 It is not because we use Redux that we have to stock absolutely all data in the store. We can choose (wisely) regarding if the data is **local** or **global**.
 
 ![data_global_local](readme_img/schemaDataGlobalLocal.jpg)

@@ -4,7 +4,8 @@ import { getNewId } from '../utils/utils';
 // == Initial state
 const initialState = {
   isOther: false,
-  author: 'SuperChat',
+  author: '',
+  password: '',
   messages: [
     {
       id: 1,
@@ -37,7 +38,7 @@ const initialState = {
       messageText: '...',
     },
     {
-      id: 6,
+      id: 7,
       author: 'Super Chat',
       messageText: 'MIAOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU',
     },

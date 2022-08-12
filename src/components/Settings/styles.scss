@@ -1,0 +1,13 @@
+@use 'src/styles/vars';
+
+.form-settings {
+  display: flex;
+  flex-direction: column;
+  gap: calc(vars.$gutter / 2);
+  .form-settings__input, .form-settings__button {
+    padding: .5rem;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1.1rem;
+  }
+}
