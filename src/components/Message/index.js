@@ -5,7 +5,12 @@ import classNames from 'classnames';
 import './styles.scss';
 
 // == Component
-function Message({ message, className, isOther, ...rest }) {
+function Message({
+  message,
+  className,
+  isOther,
+  ...rest
+}) {
   return (
     <div
       className={classNames('message', className, { message__isOther: isOther })}

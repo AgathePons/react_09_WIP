@@ -7,7 +7,7 @@
     text-align: left;
     .message__text {
       &:before {
-        left: 3rem;
+        left: 2rem;
       }
     }
   }
@@ -19,6 +19,8 @@
   }
   .message__text {
     position: relative;
+    display: inline-block;
+    min-width: 60px;
     margin-top: vars.$gutter;
     padding: vars.$gutter;
     border-radius: 1rem;
@@ -29,7 +31,7 @@
       content: '';
       position: absolute;
       top: -15px;
-      right: 3rem;
+      right: 2rem;
       display: inline-block;
       height : 0;
       width : 0;

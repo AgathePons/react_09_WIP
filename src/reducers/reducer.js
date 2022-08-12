@@ -1,9 +1,8 @@
 // == Import Actions
-import { CHANGE_INPUT_MESSAGE, SEND_INPUT_MESSAGE } from '../actions/actions';
+import { SEND_INPUT_MESSAGE } from '../actions/actions';
 // == Initial state
 const initialState = {
   isOther: false,
-  messageInputText: '',
   author: 'SuperChat',
   messages: [
     {
@@ -26,16 +25,16 @@ const initialState = {
       author: 'Super Chat',
       messageText: '🙀',
     },
+    {
+      id: 5,
+      author: 'Super Chat',
+      messageText: 'Miaouuuu miou miaouu ! Miaou ! Miiiiou ? ... Miou miaou miaouuuuuu miaou miou miiiaou',
+    },
   ],
 };
 
 function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case CHANGE_INPUT_MESSAGE:
-      return {
-        ...state,
-        messageInputText: action.payload,
-      };
     case SEND_INPUT_MESSAGE:
       return {
         ...state,

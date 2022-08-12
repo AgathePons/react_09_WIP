@@ -6,6 +6,7 @@ import './styles.scss';
 
 // == Component
 function FormInput({
+  inputRef,
   messageInputText,
   onMessageInputChange,
   onMessageInputSubmit,
@@ -25,6 +26,7 @@ function FormInput({
         <input
           className="form__input"
           placeholder="Saisissez votre message..."
+          ref={inputRef}
           type="text"
           value={messageInputText}
           onChange={onMessageInputChange}
@@ -36,6 +38,7 @@ function FormInput({
 
 FormInput.propTypes = {
   className: PropTypes.string,
+  inputRef: PropTypes.func.isRequired,
   messageInputText: PropTypes.string.isRequired,
   onMessageInputChange: PropTypes.func.isRequired,
   onMessageInputSubmit: PropTypes.func.isRequired,
