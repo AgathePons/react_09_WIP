@@ -5,7 +5,15 @@ import classNames from 'classnames';
 import './styles.scss';
 
 // == Component
-function Settings({ author, className, ...rest }) {
+function Settings({
+  onSettingsFormSubmit,
+  onSettingsEmailChange,
+  onSettingsPasswordChange,
+  passwordInput,
+  emailInput,
+  className,
+  ...rest
+}) {
   return (
     <form
       className={classNames('form-settings', className)}
@@ -19,8 +27,8 @@ function Settings({ author, className, ...rest }) {
           className="form-settings__input"
           placeholder="Email"
           type="text"
-          value={author}
-          onChange={() => console.log('setting change email')}
+          value={emailInput}
+          onChange={onSettingsEmailChange}
         />
       </label>
       <label
@@ -31,14 +39,14 @@ function Settings({ author, className, ...rest }) {
           className="form-settings__input"
           placeholder="Password"
           type="text"
-          value="test2"
-          onChange={() => console.log('setting change password')}
+          value={passwordInput}
+          onChange={onSettingsPasswordChange}
         />
       </label>
       <button
         type="submit"
         className="form-settings__button"
-        onClick={() => console.log('send click')}
+        onClick={onSettingsFormSubmit}
       >
         Send
       </button>
@@ -48,7 +56,11 @@ function Settings({ author, className, ...rest }) {
 
 Settings.propTypes = {
   className: PropTypes.string,
-  author: PropTypes.string.isRequired,
+  emailInput: PropTypes.string.isRequired,
+  passwordInput: PropTypes.string.isRequired,
+  onSettingsEmailChange: PropTypes.func.isRequired,
+  onSettingsPasswordChange: PropTypes.func.isRequired,
+  onSettingsFormSubmit: PropTypes.func.isRequired,
 };
 Settings.defaultProps = {
   className: 'settings',

@@ -2,14 +2,15 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
-import { actionSendInputMessage } from '../actions/actions';
+import { actionChangeInputEmail, actionChangeInputPassword, actionSubmitSettingsForm } from '../actions/actions';
 import Settings from '../components/Settings';
 
 // == Container
 function SettingsContainer() {
   const dispatch = useDispatch();
 
-  const author = useSelector((state) => state.author);
+  const emailInput = useSelector((state) => state.emailInput);
+  const passwordInput = useSelector((state) => state.passwordInput);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,19 +18,24 @@ function SettingsContainer() {
     setIsOpen(!isOpen);
   };
 
-  const handleMessageInputChange = (event) => {
-    setMessageInputText(event.target.value);
+  const handleSettingsFormSubmit = (event) => {
+    event.preventDefault();
+    if (emailInput.trim() === '' || passwordInput.trim() === '') return;
+    dispatch(actionSubmitSettingsForm({
+      email: emailInput,
+      password: passwordInput,
+    }));
+    dispatch(actionChangeInputEmail(''));
+    dispatch(actionChangeInputPassword(''));
+    setIsOpen(!isOpen);
   };
 
-  const handleMessageInputSubmit = () => {
-    event.preventDefault();
-    // if empty message
-    if (messageInputText.trim() === '') return;
-    dispatch(actionSendInputMessage({
-      author: author,
-      messageText: messageInputText,
-    }));
-    setMessageInputText('');
+  const handleSettingsEmailChange = (event) => {
+    dispatch(actionChangeInputEmail(event.target.value));
+  };
+
+  const handleSettingsPasswordChange = (event) => {
+    dispatch(actionChangeInputPassword(event.target.value));
   };
 
   return (
@@ -51,7 +57,11 @@ function SettingsContainer() {
         </svg>
       </button>
       <Settings
-        author={author}
+        emailInput={emailInput}
+        passwordInput={passwordInput}
+        onSettingsEmailChange={handleSettingsEmailChange}
+        onSettingsPasswordChange={handleSettingsPasswordChange}
+        onSettingsFormSubmit={handleSettingsFormSubmit}
       />
     </div>
   );
