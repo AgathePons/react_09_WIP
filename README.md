@@ -2,9 +2,10 @@
 
 ## Redux controlled component
 
-![data_global_local](readme_img/schemaDataGlobalLocal.jpg)
 
 It is not because we use Redux that we have to stock absolutely all data in the store. We can choose (wisely) regarding if the data is **local** or **global**.
+
+![data_global_local](readme_img/schemaDataGlobalLocal.jpg)
 
 Here, I chose to use the vanilla React `useState` and `useEffect` becase the data is local so it do not have to be in the Redux store.
 But regarding the project's governance, it is absolutely possible to handle it with Redux and stock it in the store.
