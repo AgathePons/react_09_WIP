@@ -1,21 +1,27 @@
+@use 'src/styles/vars';
+
 .message {
-  padding: 1.5rem;
+  padding: vars.$gutter;
+  text-align: right;
   .message__author {
     
-    padding-left: 1.5rem;
+    padding-left: vars.$gutter;
     font-weight: bold;
+    animation: fade 1s ease 0s 1;
   }
   .message__text {
     position: relative;
-    margin-top: 1.5rem;
-    padding: 1.5rem;
+    margin-top: vars.$gutter;
+    padding: vars.$gutter;
     border-radius: 1rem;
     background-color: #fff;
     color: #0b0b91;
+    animation: grow 0.3s vars.$ease-out-back 0s 1;
     &:before {
       content: '';
       position: absolute;
       top: -15px;
+      right: 3rem;
       display: inline-block;
       height : 0;
       width : 0;

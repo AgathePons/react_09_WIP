@@ -1,13 +1,22 @@
 // == Import
+import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import './styles.scss';
 
 // == Component
-function FormInput({ messageInputText, onMessageInputChange, onMessageInputSubmit }) {
+function FormInput({
+  messageInputText,
+  onMessageInputChange,
+  onMessageInputSubmit,
+  className,
+  ...rest
+}) {
   return (
     <form
-      className="form"
+      className={classNames('form', className)}
       onSubmit={onMessageInputSubmit}
+      {...rest}
     >
       <label
         className="form__label"
@@ -26,9 +35,14 @@ function FormInput({ messageInputText, onMessageInputChange, onMessageInputSubmi
 }
 
 FormInput.propTypes = {
+  className: PropTypes.string,
   messageInputText: PropTypes.string.isRequired,
   onMessageInputChange: PropTypes.func.isRequired,
   onMessageInputSubmit: PropTypes.func.isRequired,
 };
 
-export default FormInput;
+FormInput.defaultProps = {
+  className: '',
+};
+
+export default React.memo(FormInput);

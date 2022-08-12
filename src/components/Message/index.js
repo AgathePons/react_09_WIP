@@ -1,11 +1,16 @@
 // == Import
+import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import './styles.scss';
 
 // == Component
-function Message({ message }) {
+function Message({ message, className, ...rest }) {
   return (
-    <div className="message">
+    <div
+      className={classNames('message', className)}
+      {...rest}
+    >
       <div className="message__author">
         { message.author }
       </div>
@@ -17,10 +22,15 @@ function Message({ message }) {
 }
 
 Message.propTypes = {
+  className: PropTypes.string,
   message: PropTypes.shape({
     author: PropTypes.string.isRequired,
     messageText: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-export default Message;
+Message.defaultProps = {
+  className: '',
+};
+
+export default React.memo(Message);
