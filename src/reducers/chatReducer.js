@@ -1,16 +1,10 @@
 // == Import Actions
 import {
   SEND_INPUT_MESSAGE,
-  CHANGE_SETTINGS,
-  SUBMIT_SETTINGS_FORM,
-} from '../actions/actions';
+} from '../actions/chatActions';
 import { getNewId } from '../utils/utils';
 // == Initial state
 const initialState = {
-  isOther: false,
-  author: 'Super Chat',
-  email: '',
-  password: '',
   messages: [
     {
       id: 1,
@@ -50,7 +44,7 @@ const initialState = {
   ],
 };
 
-function reducer(state = initialState, action = {}) {
+function chatReducer(state = initialState, action = {}) {
   switch (action.type) {
     case SEND_INPUT_MESSAGE:
       return {
@@ -64,22 +58,9 @@ function reducer(state = initialState, action = {}) {
           },
         ],
       };
-    case CHANGE_SETTINGS:
-      return {
-        ...state,
-        [action.payload.key]: action.payload.value,
-      };
-    case SUBMIT_SETTINGS_FORM:
-      console.log(`action.payload.email: ${action.payload.email}`);
-      console.log(`action.payload.password: ${action.payload.password}`);
-      return {
-        ...state,
-        email: action.payload.email,
-        password: action.payload.password,
-      };
     default:
       return state;
   }
 }
 
-export default reducer;
+export default chatReducer;

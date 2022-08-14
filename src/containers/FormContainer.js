@@ -1,7 +1,7 @@
 // == Import
 import React, { useEffect, useState, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { actionSendInputMessage } from '../actions/actions';
+import { useDispatch } from 'react-redux';
+import { actionSendInputMessage } from '../actions/chatActions';
 import FormInput from '../components/FormInput';
 
 // == Container
@@ -13,7 +13,7 @@ function FormContainer() {
     inputRef.current.focus();
   }, []);
 
-  const author = useSelector((state) => state.author);
+  const author = 'Super Matoutador';
 
   const [messageInputText, setMessageInputText] = useState('');
 

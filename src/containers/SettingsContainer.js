@@ -2,15 +2,16 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
-import { actionChangeSettings, actionSubmitSettingsForm } from '../actions/actions';
+import { selectEmail, selectPassword } from '../selectors/settingsSelectors';
+import { actionChangeSettings, actionSubmitSettingsForm } from '../actions/settingsActions';
 import Settings from '../components/Settings';
 
 // == Container
 function SettingsContainer() {
   const dispatch = useDispatch();
 
-  const emailInput = useSelector((state) => state.email);
-  const passwordInput = useSelector((state) => state.password);
+  const emailInput = useSelector(selectEmail);
+  const passwordInput = useSelector(selectPassword);
 
   const [isOpen, setIsOpen] = useState(false);
 
