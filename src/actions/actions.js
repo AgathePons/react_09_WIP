@@ -2,6 +2,7 @@
 export const SEND_INPUT_MESSAGE = 'SEND_INPUT_MESSAGE';
 export const CHANGE_INPUT_EMAIL = 'CHANGE_INPUT_EMAIL';
 export const CHANGE_INPUT_PASSWORD = 'CHANGE_INPUT_PASSWORD';
+export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
 export const SUBMIT_SETTINGS_FORM = 'SUBMIT_SETTINGS_FORM';
 
 /**
@@ -28,11 +29,15 @@ export function actionChangeInputEmail(inputCurrentValue) {
 export function actionChangeInputPassword(inputCurrentValue) {
   return { type: CHANGE_INPUT_PASSWORD, payload: inputCurrentValue };
 }
+
+export function actionChangeSettings(key, value) {
+  return { type: CHANGE_SETTINGS, payload: { key, value } };
+}
 /**
  * Action to submit the settings form
- * @param {Object} formCurrentValue an object with email and password
+ * @param {Object} formValues an object with email and password
  * @returns {Actions}
  */
-export function actionSubmitSettingsForm(formCurrentValue) {
-  return { type: SUBMIT_SETTINGS_FORM, payload: formCurrentValue };
+export function actionSubmitSettingsForm(formValues) {
+  return { type: SUBMIT_SETTINGS_FORM, payload: formValues };
 }

@@ -2,15 +2,15 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
-import { actionChangeInputEmail, actionChangeInputPassword, actionSubmitSettingsForm } from '../actions/actions';
+import { actionChangeSettings, actionSubmitSettingsForm } from '../actions/actions';
 import Settings from '../components/Settings';
 
 // == Container
 function SettingsContainer() {
   const dispatch = useDispatch();
 
-  const emailInput = useSelector((state) => state.emailInput);
-  const passwordInput = useSelector((state) => state.passwordInput);
+  const emailInput = useSelector((state) => state.email);
+  const passwordInput = useSelector((state) => state.password);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -22,6 +22,10 @@ function SettingsContainer() {
     setIsOpen((oldIsOpen) => !oldIsOpen);
   };
 
+  const handleSettingsChange = (inputKey, inputValue) => {
+    dispatch(actionChangeSettings(inputKey, inputValue));
+  };
+
   const handleSettingsFormSubmit = (event) => {
     event.preventDefault();
     if (emailInput.trim() === '' || passwordInput.trim() === '') return;
@@ -29,17 +33,8 @@ function SettingsContainer() {
       email: emailInput,
       password: passwordInput,
     }));
-    dispatch(actionChangeInputEmail(''));
-    dispatch(actionChangeInputPassword(''));
-    setIsOpen(!isOpen);
-  };
-
-  const handleSettingsEmailChange = (event) => {
-    dispatch(actionChangeInputEmail(event.target.value));
-  };
-
-  const handleSettingsPasswordChange = (event) => {
-    dispatch(actionChangeInputPassword(event.target.value));
+    // re-init
+    setIsOpen((oldIsOpen) => !oldIsOpen);
   };
 
   return (
@@ -63,8 +58,7 @@ function SettingsContainer() {
       <Settings
         emailInput={emailInput}
         passwordInput={passwordInput}
-        onSettingsEmailChange={handleSettingsEmailChange}
-        onSettingsPasswordChange={handleSettingsPasswordChange}
+        onSettingsChange={handleSettingsChange}
         onSettingsFormSubmit={handleSettingsFormSubmit}
       />
     </div>

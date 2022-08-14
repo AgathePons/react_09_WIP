@@ -7,15 +7,22 @@ import './styles.scss';
 // == Component
 function Settings({
   onSettingsFormSubmit,
-  onSettingsEmailChange,
-  onSettingsPasswordChange,
+  onSettingsChange,
   passwordInput,
   emailInput,
   className,
   ...rest
 }) {
+  const changeEmail = (event) => {
+    onSettingsChange('email', event.target.value);
+  };
+  const changePassword = (event) => {
+    onSettingsChange('password', event.target.value);
+  };
+
   return (
     <form
+      onSubmit={onSettingsFormSubmit}
       className={classNames('form-settings', className)}
       {...rest}
     >
@@ -28,7 +35,7 @@ function Settings({
           placeholder="Email"
           type="text"
           value={emailInput}
-          onChange={onSettingsEmailChange}
+          onChange={changeEmail}
         />
       </label>
       <label
@@ -40,7 +47,7 @@ function Settings({
           placeholder="Password"
           type="password"
           value={passwordInput}
-          onChange={onSettingsPasswordChange}
+          onChange={changePassword}
         />
       </label>
       <button
@@ -58,8 +65,7 @@ Settings.propTypes = {
   className: PropTypes.string,
   emailInput: PropTypes.string.isRequired,
   passwordInput: PropTypes.string.isRequired,
-  onSettingsEmailChange: PropTypes.func.isRequired,
-  onSettingsPasswordChange: PropTypes.func.isRequired,
+  onSettingsChange: PropTypes.func.isRequired,
   onSettingsFormSubmit: PropTypes.func.isRequired,
 };
 Settings.defaultProps = {
