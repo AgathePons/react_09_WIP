@@ -37,9 +37,8 @@ function useSelector(cbSelection, compareFunction = undefined){
 
         // simple comparison between the new value and the old value
         if(){
-            // 
-            // si c'est différent il met à jour l'ancienne valeur avec la nouvelle valeur
-            //  du coup, faire un setState, déclenche un re-render
+            // if it is different, update the old value with the new one
+            //  so, doing a setState, trigger a re-render
             setOldStateSlice(stateSlice);
         }
     });
@@ -47,3 +46,40 @@ function useSelector(cbSelection, compareFunction = undefined){
     return oldStateSlice;
 }
 ```
+
+## Redux combineReducers()
+
+We can split our reducer into multiple reducers using `combineReducers()`.
+
+In the store file, we can do:
+
+```js
+const rootReducer = combineReducers({
+  chat: chatReducer,
+  settings: settingsReducer,
+});
+```
+
+We can combine and chain to combine reducers in other reducers
+
+```js
+const rootReducer = combineReducers({
+  chat: chatReducer,
+  settings: settingsReducer,
+  others: combineReducers({
+     firstOther: firstOtherReducer,
+     secondOther: secondOtherReducer,
+  }),
+});
+```
+
+Then, we give the `rootReducer to the store`:
+
+```js
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+);
+```
+
+## Redux selectors
