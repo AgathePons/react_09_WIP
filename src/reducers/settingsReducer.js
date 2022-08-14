@@ -8,6 +8,7 @@ const initialState = {
   author: 'Super Chat',
   email: '',
   password: '',
+  connected: false,
 };
 
 function reducer(state = initialState, action = {}) {
@@ -22,6 +23,7 @@ function reducer(state = initialState, action = {}) {
         ...state,
         email: action.payload.email,
         password: action.payload.password,
+        connected: true,
       };
     default:
       return state;

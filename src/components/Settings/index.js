@@ -1,5 +1,5 @@
 // == Import
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './styles.scss';
@@ -13,11 +13,25 @@ function Settings({
   className,
   ...rest
 }) {
+  const [isDesabled, setIsDisabled] = useState(true);
+
   const changeEmail = (event) => {
     onSettingsChange('email', event.target.value);
+    if (emailInput.trim() !== '' && passwordInput.trim() !== '') {
+      setIsDisabled(false);
+    }
+    else {
+      setIsDisabled(true);
+    }
   };
   const changePassword = (event) => {
     onSettingsChange('password', event.target.value);
+    if (emailInput.trim() !== '' && passwordInput.trim() !== '') {
+      setIsDisabled(false);
+    }
+    else {
+      setIsDisabled(true);
+    }
   };
 
   return (
@@ -54,6 +68,7 @@ function Settings({
         type="submit"
         className="form-settings__button"
         onClick={onSettingsFormSubmit}
+        disabled={isDesabled}
       >
         Send
       </button>

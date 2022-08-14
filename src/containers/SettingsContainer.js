@@ -43,7 +43,7 @@ function SettingsContainer() {
       className={classNames('settings-container', { 'settings-container--open': isOpen })}
     >
       <button
-        type="submit"
+        type="button"
         className="settings-container__button"
         onClick={handleOpenSettings}
       >
