@@ -82,4 +82,37 @@ const store = createStore(
 );
 ```
 
-## Redux selectors
+## Selectors files
+
+To simplify the way we get the data from the store, we can use selectors.  
+Because it becomes to be tricky with multiple stores and reducers (especially if we decide to change the store/reducers architecture), we can use a folder `selectors` with a selectors file for each reducer.  
+In the selectors file, we juste export one function by element that takes the global state in argument, and return the specific element of the state we want.
+
+So we can have:
+
+```js
+// file elementSelectors.js
+export const selectElementOne = (state) => state.elements.thingOne;
+export const selectElementTwo = (state) => state.elements.thingTwo;
+// file pieceSelectors.js
+export const selectPieceOne = (state) => state.pieces.thingOne;
+export const selectPieceTwo = (state) => state.pieces.thingTwo;
+// file partSelectors.js
+export const selectpartOne = (state) => state.parts.thingOne;
+export const selectpartTwo = (state) => state.parts.thingTwo;
+```
+
+And where we need some data:
+
+```js
+// import
+import { selectElementOne, selectElementTwo } from '../selectors/elementSelectors';
+import { selectPieceOne } from '../selectors/pieceSelectors';
+import { selectpartTwo } from '../selectors/partSelectors';
+
+// get the data
+const elementOne = useSelector(selectElementOne);
+const elementTwo = useSelector(selectElementTwo);
+const pieceOne = useSelector(selectPieceOne);
+const partTwo = useSelector(selectpartTwo);
+```
