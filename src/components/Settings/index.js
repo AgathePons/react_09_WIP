@@ -38,7 +38,7 @@ function Settings({
         <input
           className="form-settings__input"
           placeholder="Password"
-          type="text"
+          type="password"
           value={passwordInput}
           onChange={onSettingsPasswordChange}
         />

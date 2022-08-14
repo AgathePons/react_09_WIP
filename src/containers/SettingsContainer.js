@@ -15,7 +15,11 @@ function SettingsContainer() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenSettings = () => {
-    setIsOpen(!isOpen);
+    // Because setIsOpen is async, like setState, we must avoid to use the variable
+    // we want to modify directly. DON'T : setIsOpen(!isOpen);
+    // We can use the callback function that take the value
+    // of the variable we are modifying.
+    setIsOpen((oldIsOpen) => !oldIsOpen);
   };
 
   const handleSettingsFormSubmit = (event) => {
