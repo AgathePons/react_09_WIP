@@ -2,6 +2,7 @@
 export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
 export const SUBMIT_SETTINGS_FORM = 'SUBMIT_SETTINGS_FORM';
 export const USER_CONNECTED = 'USER_CONNECTED';
+export const SET_LOGIN_ERROR = 'SET_LOGIN_ERROR';
 
 /**
  * Action to modify the value in the settingsReducer
@@ -27,4 +28,12 @@ export function actionSubmitSettingsForm() {
  */
 export function actionUserConnected(pseudo) {
   return { type: USER_CONNECTED, payload: { pseudo } };
+}
+/**
+ * Action to add the error message
+ * @param {String} error the error message
+ * @returns {Action}
+ */
+export function actionSetLoginError(error) {
+  return { type: SET_LOGIN_ERROR, payload: error };
 }

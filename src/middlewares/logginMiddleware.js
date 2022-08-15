@@ -3,12 +3,12 @@ import {
   SUBMIT_SETTINGS_FORM,
   actionChangeSettings,
   actionUserConnected,
+  actionSetLoginError,
 } from '../actions/settingsActions';
 import { requestLogin } from '../requests/loginRequest';
 import { selectEmail, selectPassword } from '../selectors/settingsSelectors';
 
 const loginMiddleware = (store) => (next) => async (action) => {
-  console.log('loginMiddleware');
   // to avoid to execute the request at each action,
   // we do a IF that checks the action of submitting the login form
   if (action.type === SUBMIT_SETTINGS_FORM) {
@@ -19,7 +19,6 @@ const loginMiddleware = (store) => (next) => async (action) => {
       selectEmail(state),
       selectPassword(state),
     );
-    console.log('response:', response);
     // then handle the response
     switch (response.status) {
       // if status code 200
@@ -31,13 +30,17 @@ const loginMiddleware = (store) => (next) => async (action) => {
       }
       // if status code 500
       case 500: {
-        console.log('switch 500');
+        store.dispatch(
+          actionSetLoginError('There is something wrong with the server, ouch...'),
+        );
         break;
       }
       // if status code 401 and default
       case 401:
       default: {
-        console.log('switch 401/default');
+        store.dispatch(
+          actionSetLoginError('Ooopsy, login and/or password seems wrong...'),
+        );
         break;
       }
     }
@@ -45,7 +48,7 @@ const loginMiddleware = (store) => (next) => async (action) => {
     store.dispatch(actionChangeSettings('password', ''));
     // we don't do next() for this action so the reducers are not called for this action
     // which is catched by the middleware
-    return;
+    return undefined;
   }
 
   // if this is not the SUBMIT_SETTINGS_FORM action, just next()

@@ -1,5 +1,10 @@
 // == Import
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import {
+  createStore,
+  combineReducers,
+  compose,
+  applyMiddleware,
+} from 'redux';
 import chatReducer from '../reducers/chatReducer';
 import settingsReducer from '../reducers/settingsReducer';
 import loggerMiddleware from '../middlewares/loggerMiddleware';

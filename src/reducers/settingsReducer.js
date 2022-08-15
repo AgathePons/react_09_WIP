@@ -2,7 +2,9 @@
 import {
   CHANGE_SETTINGS,
   USER_CONNECTED,
+  SET_LOGIN_ERROR,
 } from '../actions/settingsActions';
+
 // == Initial state
 const initialState = {
   author: 'Super Chat',
@@ -10,7 +12,8 @@ const initialState = {
   password: '',
   connected: false,
   pseudo: null,
-  error: 'yolo pouet zur tronul ceci est un msg d\'error',
+  error: null,
+  // 'yolo pouet zut tronul ceci est un msg d\'error, mêhnaaaan c\'est quoi ça encooore',
 };
 
 function reducer(state = initialState, action = {}) {
@@ -25,6 +28,12 @@ function reducer(state = initialState, action = {}) {
         ...state,
         connected: true,
         pseudo: action.payload.pseudo,
+      };
+    case SET_LOGIN_ERROR:
+      return {
+        ...state,
+        connected: false,
+        error: action.payload,
       };
     default:
       return state;

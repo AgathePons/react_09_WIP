@@ -53,11 +53,6 @@ function Settings({
           onChange={changePassword}
         />
       </label>
-      {error && (
-        <p className="form-settings__error">
-          {error}
-        </p>
-      )}
       <button
         type="submit"
         className="form-settings__button"
@@ -66,6 +61,11 @@ function Settings({
       >
         Send
       </button>
+      {error && (
+        <p className="form-settings__error">
+          {error}
+        </p>
+      )}
     </form>
   );
 }
