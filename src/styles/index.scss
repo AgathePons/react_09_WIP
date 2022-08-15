@@ -13,8 +13,9 @@ body {
 
 .settings-container {
   z-index: 2;
-  right: -246px;
+  right: -250px;
   position: fixed;
+  width: 305px;
   display: flex;
   padding: calc(vars.$gutter / 2);
   overflow: hidden;
@@ -31,7 +32,7 @@ body {
   }
   .settings-container__button {
     border: none;
-    width: 35px;
+    // width: 35px;
     height: 35px;
     border-radius: 50%;
     padding: 10px;

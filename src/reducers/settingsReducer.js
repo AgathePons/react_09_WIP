@@ -10,6 +10,7 @@ const initialState = {
   password: '',
   connected: false,
   pseudo: null,
+  error: 'yolo pouet zur tronul ceci est un msg d\'error',
 };
 
 function reducer(state = initialState, action = {}) {

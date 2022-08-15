@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: calc(vars.$gutter / 2);
-  .form-settings__input, .form-settings__button {
+  .form-settings__input, .form-settings__button, .form-settings__error {
     padding: .5rem;
     border-radius: 1rem;
     border: none;
@@ -13,6 +13,11 @@
       opacity: .5;
       cursor: not-allowed;
     }
+  }
+  .form-settings__error {
+    font-size: 1rem;
+    color: #c91313;
+    background-color: #fff;
   }
   .form-settings__button {
     background-color: #bddcf0;

@@ -7,6 +7,7 @@ import {
   selectPassword,
   selectConnected,
   selectPseudo,
+  selectError,
 } from '../selectors/settingsSelectors';
 import { actionChangeSettings, actionSubmitSettingsForm } from '../actions/settingsActions';
 import Settings from '../components/Settings';
@@ -19,6 +20,7 @@ function SettingsContainer() {
   const passwordInput = useSelector(selectPassword);
   const isConnected = useSelector(selectConnected);
   const pseudo = useSelector(selectPseudo);
+  const error = useSelector(selectError);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -76,6 +78,7 @@ function SettingsContainer() {
       <Settings
         emailInput={emailInput}
         passwordInput={passwordInput}
+        error={error}
         onSettingsChange={handleSettingsChange}
         onSettingsFormSubmit={handleSettingsFormSubmit}
       />

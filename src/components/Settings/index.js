@@ -10,6 +10,7 @@ function Settings({
   onSettingsChange,
   passwordInput,
   emailInput,
+  error,
   className,
   ...rest
 }) {
@@ -52,6 +53,11 @@ function Settings({
           onChange={changePassword}
         />
       </label>
+      {error && (
+        <p className="form-settings__error">
+          {error}
+        </p>
+      )}
       <button
         type="submit"
         className="form-settings__button"
@@ -68,10 +74,12 @@ Settings.propTypes = {
   className: PropTypes.string,
   emailInput: PropTypes.string.isRequired,
   passwordInput: PropTypes.string.isRequired,
+  error: PropTypes.string,
   onSettingsChange: PropTypes.func.isRequired,
   onSettingsFormSubmit: PropTypes.func.isRequired,
 };
 Settings.defaultProps = {
   className: 'settings',
+  error: undefined,
 };
 export default React.memo(Settings);
