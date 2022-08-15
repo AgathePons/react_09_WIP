@@ -171,3 +171,7 @@ const logger = (store) => (next) => async (action) => {
 
 export default logger;
 ```
+
+We can illustrate the login with this sequence diagram :
+
+![login_sequence_diagram](./readme_img/diagSequenceMiddleware.jpg)!

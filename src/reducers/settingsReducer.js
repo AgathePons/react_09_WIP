@@ -9,6 +9,7 @@ const initialState = {
   email: '',
   password: '',
   connected: false,
+  pseudo: null,
 };
 
 function reducer(state = initialState, action = {}) {
