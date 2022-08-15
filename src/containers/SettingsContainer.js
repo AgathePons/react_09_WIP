@@ -2,7 +2,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
-import { selectEmail, selectPassword } from '../selectors/settingsSelectors';
+import {
+  selectEmail,
+  selectPassword,
+  selectConnected,
+  selectPseudo,
+} from '../selectors/settingsSelectors';
 import { actionChangeSettings, actionSubmitSettingsForm } from '../actions/settingsActions';
 import Settings from '../components/Settings';
 
@@ -12,6 +17,8 @@ function SettingsContainer() {
 
   const emailInput = useSelector(selectEmail);
   const passwordInput = useSelector(selectPassword);
+  const isConnected = useSelector(selectConnected);
+  const pseudo = useSelector(selectPseudo);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,14 +37,11 @@ function SettingsContainer() {
   const handleSettingsFormSubmit = (event) => {
     event.preventDefault();
     if (emailInput.trim() === '' || passwordInput.trim() === '') return;
-    dispatch(actionSubmitSettingsForm({
-      email: emailInput,
-      password: passwordInput,
-    }));
+    dispatch(actionSubmitSettingsForm());
     // re-init
     /* dispatch(actionChangeSettings('email', ''));
     dispatch(actionChangeSettings('password', '')); */
-    setIsOpen((oldIsOpen) => !oldIsOpen);
+    //! setIsOpen((oldIsOpen) => !oldIsOpen);
   };
 
   return (
@@ -58,12 +62,26 @@ function SettingsContainer() {
           />
         </svg>
       </button>
+      {isConnected && (
+        <div className="settings-container__pseudo">
+          <span className="settings-container__pseudo_txt">
+            You're connected as
+          </span>
+          <span className="settings-container__pseudo_pseudo">
+            {pseudo}
+          </span>
+        </div>
+      )}
+      {!isConnected && (
       <Settings
         emailInput={emailInput}
         passwordInput={passwordInput}
         onSettingsChange={handleSettingsChange}
         onSettingsFormSubmit={handleSettingsFormSubmit}
       />
+
+      )}
+
     </div>
   );
 }

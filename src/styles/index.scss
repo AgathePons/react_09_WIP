@@ -51,6 +51,25 @@ body {
       transform: scale(1.1) rotate(0deg);
     }
   }
+  .settings-container__pseudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 235px;
+    height: 100px;
+    padding: .5rem;
+    border-radius: 1rem;
+    background-color: #fff;
+    &_txt {
+      font-size: .9rem;
+      color: #13405D;
+    }
+    &_pseudo {
+      font-size: 1.1rem;
+    }
+  }
 }
 
 .chat-container {
