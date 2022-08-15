@@ -1,7 +1,8 @@
 // == Import
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import chatReducer from '../reducers/chatReducer';
 import settingsReducer from '../reducers/settingsReducer';
+import loggerMiddleware from '../middlewares/loggerMiddleware';
 
 // https://redux.js.org/api/combinereducers
 // we combine our reducers to be more readable and clean
@@ -10,17 +11,16 @@ import settingsReducer from '../reducers/settingsReducer';
 const rootReducer = combineReducers({
   chat: chatReducer,
   settings: settingsReducer,
-  // We can combine and chain to combine reducers in other reducers
-  // settings: combineReducers({
-  //   connect: settingsReducer,
-  // }),
 });
+// allow to get Redux devtool working with Redux middlewares
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middlewares = composeEnhancers(applyMiddleware(
+  loggerMiddleware,
+));
 
 const store = createStore(
   rootReducer,
-  // Redux devtools
-  // eslint-disable-next-line no-underscore-dangle
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  middlewares,
 );
 
 export default store;

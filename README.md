@@ -49,6 +49,8 @@ function useSelector(cbSelection, compareFunction = undefined){
 
 ## Redux combineReducers()
 
+See the Redux doc on **[combineReducers](https://redux.js.org/api/combinereducers)**.
+
 We can split our reducer into multiple reducers using `combineReducers()`.
 
 In the store file, we can do:
@@ -115,4 +117,42 @@ const elementOne = useSelector(selectElementOne);
 const elementTwo = useSelector(selectElementTwo);
 const pieceOne = useSelector(selectPieceOne);
 const partTwo = useSelector(selectpartTwo);
+```
+
+## Middlewares Redux
+
+We cannot put the requests in reducers, because reducers **cannot be async**.
+
+So we will use **[Redux middlewares](https://redux.js.org/understanding/history-and-design/middleware)**.
+
+The middleawres in Redux context provide a third-party extension point between dispatching an action, and the moment it reaches the reducer. So it is very usefull to talk to an **asynchronous API** for example.
+
+To use the middlewares, we have to call them in the `store` file.
+
+Because the special line we add in the store to get Redux Devtool working ( `window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()` ) is actually a middleware, there is a method to combine this one with ours.
+
+First, import  `compose` and  `applyMiddleware`.
+
+```js
+import { compose, applyMiddleware } from 'redux';
+```
+
+Then, declare new variables to compose middlewares.
+
+```js
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middlewares = composeEnhancers(applyMiddleware(
+  myFirstMiddleware,
+  mySecondMiddleware,
+  myThirdMiddleware,
+));
+```
+
+And finally, add the `middlewares to the store.
+
+```js
+const store = createStore(
+  rootReducer,
+  middlewares,
+);
 ```
