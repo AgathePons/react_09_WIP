@@ -21,8 +21,6 @@ function reducer(state = initialState, action = {}) {
     case SUBMIT_SETTINGS_FORM:
       return {
         ...state,
-        email: action.payload.email,
-        password: action.payload.password,
         connected: true,
       };
     default:

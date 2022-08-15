@@ -9,5 +9,12 @@
     border-radius: 1rem;
     border: none;
     font-size: 1.1rem;
+    &:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+  }
+  .form-settings__button {
+    background-color: #bddcf0;
   }
 }
