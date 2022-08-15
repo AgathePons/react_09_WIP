@@ -159,4 +159,15 @@ const store = createStore(
 
 Like with NodeJS, the middleware has to **`next()`** to allow the program to go to the next part (another middleware, the reducer...).
 
-We can use actions in middlewares.
+In middlewares, we can use actions, access the store, do different things for example to suite the different status code we get from an API request.  
+Middlewares can be async, adding the `async` to the last function of the currying.
+
+```js
+const logger = (store) => (next) => async (action) => {
+  // call the next middlewares or the reducers
+  const result = next(action);
+  return result;
+};
+
+export default logger;
+```

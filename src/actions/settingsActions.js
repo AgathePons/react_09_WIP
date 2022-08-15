@@ -1,6 +1,7 @@
 // == Actions
 export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
 export const SUBMIT_SETTINGS_FORM = 'SUBMIT_SETTINGS_FORM';
+export const USER_CONNECTED = 'USER_CONNECTED';
 
 /**
  * Action to modify the value in the settingsReducer
@@ -16,6 +17,14 @@ export function actionChangeSettings(key, value) {
  * @param {Object} formValues an object with email and password
  * @returns {Actions}
  */
-export function actionSubmitSettingsForm(formValues) {
-  return { type: SUBMIT_SETTINGS_FORM, payload: formValues };
+export function actionSubmitSettingsForm() {
+  return { type: SUBMIT_SETTINGS_FORM };
+}
+/**
+ * Action to save the pseudo and set connected to true
+ * @param {String} pseudo pseudo of the connected user
+ * @returns {Action}
+ */
+export function actionUserConnected(pseudo) {
+  return { type: USER_CONNECTED, payload: { pseudo } };
 }

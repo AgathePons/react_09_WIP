@@ -1,7 +1,7 @@
 // == Import Actions
 import {
   CHANGE_SETTINGS,
-  SUBMIT_SETTINGS_FORM,
+  USER_CONNECTED,
 } from '../actions/settingsActions';
 // == Initial state
 const initialState = {
@@ -18,10 +18,11 @@ function reducer(state = initialState, action = {}) {
         ...state,
         [action.payload.key]: action.payload.value,
       };
-    case SUBMIT_SETTINGS_FORM:
+    case USER_CONNECTED:
       return {
         ...state,
         connected: true,
+        pseudo: action.payload.pseudo,
       };
     default:
       return state;

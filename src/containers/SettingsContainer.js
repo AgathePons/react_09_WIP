@@ -35,8 +35,8 @@ function SettingsContainer() {
       password: passwordInput,
     }));
     // re-init
-    dispatch(actionChangeSettings('email', ''));
-    dispatch(actionChangeSettings('password', ''));
+    /* dispatch(actionChangeSettings('email', ''));
+    dispatch(actionChangeSettings('password', '')); */
     setIsOpen((oldIsOpen) => !oldIsOpen);
   };
 
