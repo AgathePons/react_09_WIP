@@ -148,7 +148,7 @@ const middlewares = composeEnhancers(applyMiddleware(
 ));
 ```
 
-And finally, add the `middlewares to the store.
+And finally, add the `middlewares` to the store.
 
 ```js
 const store = createStore(
@@ -156,3 +156,7 @@ const store = createStore(
   middlewares,
 );
 ```
+
+Like with NodeJS, the middleware has to **`next()`** to allow the program to go to the next part (another middleware, the reducer...).
+
+We can use actions in middlewares.
