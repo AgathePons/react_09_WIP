@@ -13,7 +13,6 @@ const initialState = {
   connected: false,
   pseudo: null,
   error: null,
-  // 'yolo pouet zut tronul ceci est un msg d\'error, mêhnaaaan c\'est quoi ça encooore',
 };
 
 function reducer(state = initialState, action = {}) {
@@ -28,6 +27,7 @@ function reducer(state = initialState, action = {}) {
         ...state,
         connected: true,
         pseudo: action.payload.pseudo,
+        error: null,
       };
     case SET_LOGIN_ERROR:
       return {

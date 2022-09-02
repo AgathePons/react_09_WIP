@@ -1,5 +1,5 @@
 /**
- * Finf the highest id and return it +1
+ * Find the highest id and return it +1
  * @param {Array<Object>} collection array of objects with id key
  * @returns {number} new id
  */
