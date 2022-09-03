@@ -6,7 +6,7 @@ It is not because we use Redux that we have to stock absolutely all data in the 
 
 ![data_global_local](readme_img/schemaDataGlobalLocal.jpg)
 
-Here, I chose to use the vanilla React `useState` and `useEffect` becase the data is local so it do not have to be in the Redux store.
+Here, I chose to use the vanilla React `useState` and `useEffect` because the data is local so it do not have to be in the Redux store.
 But regarding the project's governance, it is absolutely possible to handle it with Redux and stock it in the store.
 
 The advantage is that if we have some big form with sub-components, using the Redux store and the global state for controlled components like inputs and so on allow us to access data from anywhere without bothering to transport the data where they have to be used.
