@@ -40,9 +40,9 @@ function SettingsContainer() {
     event.preventDefault();
     if (emailInput.trim() === '' || passwordInput.trim() === '') return;
     dispatch(actionSubmitSettingsForm());
-    // re-init
-    /* dispatch(actionChangeSettings('email', ''));
-    dispatch(actionChangeSettings('password', '')); */
+    // re-init password field
+    dispatch(actionChangeSettings('password', ''));
+    // TODO do we close the panel or not?
     //! setIsOpen((oldIsOpen) => !oldIsOpen);
   };
 
