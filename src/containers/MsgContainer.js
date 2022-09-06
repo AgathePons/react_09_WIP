@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Message from '../components/Message';
 
 // == Container
-function MsgContainer({ messages, isOther }) {
+function MsgContainer({ userPseudo, messages, isOther }) {
   const containerRef = useRef(null);
   useEffect(() => {
     const divHeight = containerRef.current.scrollHeight;
@@ -19,7 +19,7 @@ function MsgContainer({ messages, isOther }) {
         <Message
           key={message.id}
           message={message}
-          isOther={isOther}
+          isOther={message.author !== userPseudo}
         />
       ))}
     </div>
@@ -28,11 +28,16 @@ function MsgContainer({ messages, isOther }) {
 
 MsgContainer.propTypes = {
   isOther: PropTypes.bool.isRequired,
+  userPseudo: PropTypes.string,
   messages: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     author: PropTypes.string.isRequired,
     messageText: PropTypes.string.isRequired,
   }).isRequired).isRequired,
+};
+
+MsgContainer.defaultProps = {
+  userPseudo: '',
 };
 
 export default React.memo(MsgContainer);
