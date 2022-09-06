@@ -9,6 +9,7 @@ import chatReducer from '../reducers/chatReducer';
 import settingsReducer from '../reducers/settingsReducer';
 import loggerMiddleware from '../middlewares/loggerMiddleware';
 import loginMiddleware from '../middlewares/logginMiddleware';
+import socketMiddleware from '../middlewares/socketMiddleware';
 
 // https://redux.js.org/api/combinereducers
 // we combine our reducers to be more readable and clean
@@ -23,6 +24,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middlewares = composeEnhancers(applyMiddleware(
   loggerMiddleware,
   loginMiddleware,
+  socketMiddleware,
 ));
 
 const store = createStore(

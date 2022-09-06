@@ -174,4 +174,86 @@ export default logger;
 
 We can illustrate the login with this sequence diagram :
 
-![login_sequence_diagram](./readme_img/diagSequenceMiddleware.jpg)!
+![login_sequence_diagram](./readme_img/diagSequenceMiddleware.jpg)
+
+## Socket.io
+
+We use **[socket.io](https://socket.io/fr/)** to set up a **websocket** between our React front app and our NodeJS back server.
+
+Socket.io allows to set up a communication channel between the client and the server with websockets.
+
+>In this project, we do not use the last version, but the 2.4.0, so it could be interresting to read the doc and set up socket.io on an other project using the last version
+
+To handle the connection in the front side:
+
+```js
+// == Import
+import io from 'socket.io-client';
+socket = io('http://localhost:3001');
+console.log(socket);
+```
+
+To handle the connection in the back side:
+
+```js
+// Require
+const express = require('express');
+const Server = require('http').Server;
+const socket = require('socket.io');
+// Vars
+const app = express();
+const server = Server(app);
+const io = socket(server);
+const port = 3001;
+// Socket.io
+io.on('connection', (ws) => {
+  console.log('>> socket.io - connected');
+});
+```
+
+Once the client is connected to the websocket, it can **emit** and/or **receive** to/from the server.  
+To do so, we can use **`socket.emit()`** to send an event **to the server**, and **`socket.on()`** to trigger an event when we receive an action **from the server**.  
+On the back side, we can use **`ws.on()`** to trigger an event when we receive an event **from the client**, and `io.emit()` to send an event **to the client**.
+
+So, when the chat form is submitted, here is what happens:
+
+![socket.io-schema](./readme_img/socketio.png)
+
+Front side to send a message:
+
+```js
+case SOCKET_SEND_MESSAGE:
+  // get the state to have the pseudo
+  const state = store.getState();
+  console.log('sent send_message', action.payload);
+  // send the message to the server with the pseudo
+  socket.emit(
+    'send_message',
+    {
+      text: action.payload,
+      author: state.settings.pseudo,
+    },
+  );
+  return;
+```
+
+Back side when `'send_message'` is received from the client:
+
+```js
+ws.on('send_message', (message) => {
+    console.log('send_message', message);
+    message.id = ++id;
+    io.emit('send_message', message);
+  });
+```
+
+Front side when `'send_message'` is received from the server:
+
+```js
+// event when a message is sent
+socket.on('send_message', (message) => {
+  console.log('received send_message', message);
+  // send an action with the message object
+  store.dispatch(actionAddMessage(message));
+});
+```

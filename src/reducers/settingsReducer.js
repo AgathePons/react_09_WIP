@@ -7,11 +7,10 @@ import {
 
 // == Initial state
 const initialState = {
-  author: 'Super Chat',
-  email: '',
-  password: '',
-  connected: false,
   pseudo: null,
+  email: 'acidman@herocorp.io',
+  password: 'fructis',
+  connected: false,
   error: null,
 };
 

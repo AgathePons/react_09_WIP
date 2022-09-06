@@ -5,6 +5,7 @@ import {
   actionUserConnected,
   actionSetLoginError,
 } from '../actions/settingsActions';
+import { actionSocketConnect } from '../actions/socketActions';
 import { requestLogin } from '../requests/loginRequest';
 import { selectEmail, selectPassword } from '../selectors/settingsSelectors';
 
@@ -26,6 +27,7 @@ const loginMiddleware = (store) => (next) => async (action) => {
         store.dispatch(
           actionUserConnected(response.data.pseudo),
         );
+        store.dispatch(actionSocketConnect());
         break;
       }
       // if status code 500

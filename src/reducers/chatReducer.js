@@ -1,6 +1,6 @@
 // == Import Actions
 import {
-  SEND_INPUT_MESSAGE,
+  ADD_MESSAGE,
 } from '../actions/chatActions';
 import { getNewId } from '../utils/utils';
 // == Initial state
@@ -46,7 +46,7 @@ const initialState = {
 
 function chatReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case SEND_INPUT_MESSAGE:
+    case ADD_MESSAGE:
       return {
         ...state,
         messages: [
@@ -54,7 +54,7 @@ function chatReducer(state = initialState, action = {}) {
           {
             id: getNewId(state.messages),
             author: action.payload.author,
-            messageText: action.payload.messageText,
+            messageText: action.payload.text,
           },
         ],
       };

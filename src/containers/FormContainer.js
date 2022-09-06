@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectPseudo } from '../selectors/settingsSelectors';
-import { actionSendInputMessage } from '../actions/chatActions';
+import { actionSocketSendMessage } from '../actions/socketActions';
 import FormInput from '../components/FormInput';
 
 // == Container
@@ -14,7 +14,7 @@ function FormContainer() {
     inputRef.current.focus();
   }, []);
 
-  const author = useSelector(selectPseudo);
+  const pseudo = useSelector(selectPseudo);
 
   const [messageInputText, setMessageInputText] = useState('');
 
@@ -26,10 +26,7 @@ function FormContainer() {
     event.preventDefault();
     // if empty message
     if (messageInputText.trim() === '') return;
-    dispatch(actionSendInputMessage({
-      author: author,
-      messageText: messageInputText,
-    }));
+    dispatch(actionSocketSendMessage(messageInputText));
     setMessageInputText('');
   };
 
