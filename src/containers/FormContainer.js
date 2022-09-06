@@ -1,20 +1,20 @@
 // == Import
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectPseudo } from '../selectors/settingsSelectors';
 import { actionSocketSendMessage } from '../actions/socketActions';
+import { selectConnected } from '../selectors/settingsSelectors';
 import FormInput from '../components/FormInput';
 
 // == Container
 function FormContainer() {
   const dispatch = useDispatch();
 
+  const connected = useSelector(selectConnected);
+
   const inputRef = useRef(null);
   useEffect(() => {
     inputRef.current.focus();
   }, []);
-
-  const pseudo = useSelector(selectPseudo);
 
   const [messageInputText, setMessageInputText] = useState('');
 
@@ -34,9 +34,11 @@ function FormContainer() {
     <div className="form-container">
       <FormInput
         inputRef={inputRef}
+        inputMessagePlaceholder={connected ? 'Saisissez votre message' : 'Connectez-vous pour clavarder'}
         messageInputText={messageInputText}
         onMessageInputChange={handleMessageInputChange}
         onMessageInputSubmit={handleMessageInputSubmit}
+        inputDisabled={!connected}
       />
     </div>
   );

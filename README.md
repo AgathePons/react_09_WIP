@@ -213,7 +213,7 @@ io.on('connection', (ws) => {
 
 Once the client is connected to the websocket, it can **emit** and/or **receive** to/from the server.  
 To do so, we can use **`socket.emit()`** to send an event **to the server**, and **`socket.on()`** to trigger an event when we receive an action **from the server**.  
-On the back side, we can use **`ws.on()`** to trigger an event when we receive an event **from the client**, and `io.emit()` to send an event **to the client**.
+On the back side, we can use **`ws.on()`** to trigger an event when we receive an event **from the client**, and **`io.emit()`** to send an event **to the client**.
 
 So, when the chat form is submitted, here is what happens:
 

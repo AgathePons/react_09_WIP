@@ -15,5 +15,10 @@
     background-size: auto 65%;
     background-position-x: calc(100% - 1rem);
     background-position-y: center;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: #fff;
+      opacity: .6;
+    }
   }
 }
