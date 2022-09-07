@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Message from '../components/Message';
 
 // == Container
-function MsgContainer({ userPseudo, messages, isOther }) {
+function MsgContainer({ userPseudo, messages }) {
   const containerRef = useRef(null);
   useEffect(() => {
     const divHeight = containerRef.current.scrollHeight;
@@ -27,7 +27,6 @@ function MsgContainer({ userPseudo, messages, isOther }) {
 }
 
 MsgContainer.propTypes = {
-  isOther: PropTypes.bool.isRequired,
   userPseudo: PropTypes.string,
   messages: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,

@@ -1,4 +1,13 @@
-# /!\ WIP /!\
+# Chat app FRONT - React, Redux - Socket.io
+
+This project is a chat app using **React/Redux** and **[Socket.io](https://socket.io/fr/)** as websocket.  
+This repo is the front side, the back side is **[HERE](https://github.com/AgathePons/react_09_chat-app_BACK_socketio)**.
+
+Logins/passwords:
+
+> bouclierman@herocorp.io/jennifer  
+> acidman@herocorp.io/fructis  
+> captain.sportsextremes@herocorp.io/pingpong
 
 ## Redux controlled component
 

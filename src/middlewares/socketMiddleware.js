@@ -6,6 +6,10 @@ import { actionAddMessage } from '../actions/chatActions';
 let socket;
 
 const socketMiddleware = (store) => (next) => async (action) => {
+  // get the state to have the pseudo
+  const state = store.getState();
+  // get the next action to continue
+  const result = next(action);
   switch (action.type) {
     case SOCKET_CONNECT:
       socket = io('http://localhost:3001');
@@ -17,10 +21,8 @@ const socketMiddleware = (store) => (next) => async (action) => {
         store.dispatch(actionAddMessage(message));
       });
       // we don't want to pass the SOCKET_CONNECT action to the reducers so return
-      return;
+      return null;
     case SOCKET_SEND_MESSAGE:
-      // get the state to have the pseudo
-      const state = store.getState();
       console.log('sent send_message', action.payload);
       // send the message to the server with the pseudo
       socket.emit(
@@ -30,10 +32,9 @@ const socketMiddleware = (store) => (next) => async (action) => {
           author: state.settings.pseudo,
         },
       );
-      return;
+      return null;
     default:
       // Send the action to the reducers
-      const result = next(action);
       return result;
   }
 };
